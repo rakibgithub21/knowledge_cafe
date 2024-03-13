@@ -1,6 +1,8 @@
+
 import './App.css'
 import Main from './Main/Main'
 import Header from './components/Header/Header'
+
 
 function App() {
 
@@ -8,6 +10,7 @@ function App() {
     <>
       <Header></Header>
       <Main></Main>
+      
     </>
   )
 }

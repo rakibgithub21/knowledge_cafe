@@ -3,6 +3,8 @@ import { useState } from "react";
 import Product from "../Product/Product";
 import Time from "../components/Time/Time";
 import Bookmarked from "../components/Bookmarked/Bookmarked";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Main = () => {
     const [products, setProducts] = useState([]);
@@ -17,7 +19,18 @@ const Main = () => {
     const addToBookmark = (product) => {
         if (bookMarked.length < 2) {
             if (bookMarked.includes(product)) {
-                alert('You select this')
+                toast.warn('You Select this before!', {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    
+                });
                 return bookMarked
             }
             else {
@@ -26,7 +39,17 @@ const Main = () => {
             }
         }
         else {
-            alert('Only select 2 items');
+            toast.warn('You can select only 2 items at a time!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
             return;
 
         }
@@ -48,6 +71,7 @@ const Main = () => {
                 <Time></Time>
                 <Bookmarked bookMarked={bookMarked}></Bookmarked>
             </div>
+            <ToastContainer />
         </div>
     );
 };
