@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { FaBookmark } from "react-icons/fa6";
 
 
-const Product = ({ product, addToBookmark }) => {
+const Product = ({ product, addToBookmark, addTime }) => {
     // console.log(product);
-    const { cover, title, author_img, hashtags, author, reading_time, posted_date } = product;
+    const { cover, title, author_img, hashtags, author, reading_time, posted_date,id } = product;
 
     return (
         <div className='space-y-5 mb-10'>
@@ -26,13 +26,14 @@ const Product = ({ product, addToBookmark }) => {
             <div className='flex gap-3 text-[#11111199] font-medium text-xl'>
                 {hashtags.map((hash, idx) => <p key={idx}>#{hash}</p>)}
             </div>
-            <button  className='text-[#6047EC] text-xl font-medium underline'>Mark as read</button>
+            <button onClick={() => addTime(reading_time,id)}  className='text-[#6047EC] text-xl font-medium underline'>Mark as read</button>
         </div>
     );
 };
 Product.propTypes = {
     product: PropTypes.object,
     addToBookmark: PropTypes.func,
+    addTime: PropTypes.func,
 };
 export default Product;
 

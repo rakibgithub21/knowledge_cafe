@@ -16,6 +16,16 @@ const Main = () => {
 
     const [bookMarked, setBookMarked] = useState([])
 
+    const [readingTimed, setReadingTimed] = useState(0)
+
+    const addTime = (time, id) => {
+        setReadingTimed(readingTimed + time)
+        const remaining = bookMarked.filter(read => read.id !== id);
+        console.log(remaining);
+        setBookMarked(remaining)
+    }
+
+
     const addToBookmark = (product) => {
         if (bookMarked.length < 2) {
             if (bookMarked.includes(product)) {
@@ -29,7 +39,7 @@ const Main = () => {
                     progress: undefined,
                     theme: "light",
                     transition: Bounce,
-                    
+
                 });
                 return bookMarked
             }
@@ -64,11 +74,13 @@ const Main = () => {
                         key={product.id}
                         product={product}
                         addToBookmark={addToBookmark}
+                        addTime={addTime}
+
                     ></Product>)
                 }
             </div>
             <div className="w-1/3">
-                <Time></Time>
+                <Time readingTimed={readingTimed}></Time>
                 <Bookmarked bookMarked={bookMarked}></Bookmarked>
             </div>
             <ToastContainer />
